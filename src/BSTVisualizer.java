@@ -19,12 +19,12 @@ public class BSTVisualizer extends JFrame {
     private JLabel statusLabel;
     private JPanel controlPanel;
 
-    // K-Pop Demon Hunter Palette
-    private final Color NEON_PINK = new Color(255, 0, 127);
-    private final Color CYBER_CYAN = new Color(0, 255, 255);
-    private final Color DEEP_VOID = new Color(13, 13, 25);
-    private final Color PANEL_DARK = new Color(25, 25, 45);
-    private final Color SPIRIT_GREEN = new Color(50, 255, 126);
+    // K-Pop Demon Hunter Palette // MR U COLOR CHANGE APPROVED
+    private final Color NEON_PINK = new Color(209, 35, 119);
+    private final Color CYBER_CYAN = new Color(244, 108, 201);
+    private final Color DEEP_VOID = new Color(35, 35, 44);
+    private final Color PANEL_DARK = new Color(250, 199, 255);
+    private final Color SPIRIT_GREEN = new Color(255, 70, 203);
 
     private TreeNode highlightedNode = null;
     private boolean isTraversing = false;
@@ -109,9 +109,9 @@ public class BSTVisualizer extends JFrame {
         syncLabel.setForeground(NEON_PINK);
         syncLabel.setFont(new Font("Monospaced", Font.BOLD, 12));
 
-        JButton inorderBtn = createStyledButton("Harmonic (In)", new Color(150, 50, 255));
-        JButton preorderBtn = createStyledButton("Assault (Pre)", new Color(150, 50, 255));
-        JButton postorderBtn = createStyledButton("Secure (Post)", new Color(150, 50, 255));
+        JButton inorderBtn = createStyledButton("Harmonic (In)", new Color(236, 119, 173));
+        JButton preorderBtn = createStyledButton("Assault (Pre)", new Color(236, 119, 173));
+        JButton postorderBtn = createStyledButton("Secure (Post)", new Color(236, 119, 173));
 
         row2.add(syncLabel);
         row2.add(inorderBtn);
@@ -235,7 +235,7 @@ public class BSTVisualizer extends JFrame {
         traversalIndex = 0;
         traversalTimer = new Timer(animationDelay, e -> {
             if (traversalIndex < traversalSequence.size()) {
-                highlightedNode = traversalSequence.get(traversalIndex++);
+                highlightedNode = (TreeNode) traversalSequence.get(traversalIndex++);
                 treePanel.repaint();
             } else {
                 traversalTimer.stop();

@@ -1,5 +1,4 @@
-
-    /**
+ /**
      * TreeNode class representing a single node in the Binary Search Tree.
      * DO NOT MODIFY THIS CLASS.
      */
