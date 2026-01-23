@@ -424,17 +424,21 @@ import java.util.List;
         public int height() {
             // TODO: Implement this method
             // Hint: Use recursion - height = 1 + max(left height, right height)
-            return 0;
-        }
-        public int heightHelper(TreeNode current , int hght){
-            hght++;
+
+                return 1+heightHelper(root,0,-1);
+            }
+        public int heightHelper(TreeNode current , int mhght, int chght){
+            chght++;
+            if(chght>= mhght){
+                mhght = chght;
+            }
             if(current.left != null ){
-          //      postorderHelper(current.left,hght);
+               mhght = heightHelper(current.left, mhght, chght);
             }
             if (current.right != null) {
-         //       postorderHelper(current.right,hght);
+                mhght = heightHelper(current.right, mhght, chght);
             }
-            return hght;
+            return mhght;
         }
 
         /**
