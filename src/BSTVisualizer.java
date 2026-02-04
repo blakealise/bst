@@ -45,6 +45,15 @@ public class BSTVisualizer extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 850);
         setLocationRelativeTo(null);
+        bst.insert(50);
+        bst.insert(25);
+        bst.insert(10);
+        bst.insert(30);
+        bst.insert(35);
+        bst.insert(36);
+
+
+
     }
 
     private void initializeUI() {

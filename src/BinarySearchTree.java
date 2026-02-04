@@ -111,192 +111,70 @@ import java.util.List;
             // TODO: Implement this method
             // Hint: Handle three cases - leaf, one child, two children
             // For two children, use inorder successor or predecessor
-//            if (!search(value)){
-//                return;
-//            }
-            System.out.println("begin deletion");
-            TreeNode newNode = new TreeNode(value);
-            if (root == null) {
-                return;
+             root = deleteHelp(root,value);
+        }
+        public TreeNode deleteHelp (TreeNode current, int value){
+            System.out.println();
+            if(current == null){
+                return null;
+            }
+            if(current.data == value){
+                System.out.println("Match found for deletion");
+                count--;
+
+               if(getNumOfChildren(current) == 0) { //Zero Children Case
+                return null;
             }
 
-
-            TreeNode current = root;
-            boolean isEnd = false;
-            while (!isEnd) {
-                if(current != null){
-//                    System.out.println("Checking " + value + " against: " + current.data);
-                    if(value < current.data){ //This tells us we gotta go left if true
-//                        System.out.println("I should go left");
-                        if(current.left != null){ //Make sure we can do something on current node's left child (like get its value)
-                            if(current.left.data == value){ //We found the node to delete, hurray
-//                                System.out.println("I should begin deletion");
-                                /*
-                                    In this section, we can (eventually) write the logic for all 3 deletion cases
-                                 */
-                                if(current.left.left == null && current.left.right == null){
-//                                    System.out.println("no children scenario");
-                                    current.left = null;
-                                    count--;
-                                    return;
-                                }
-                                if(current.left.left != null && current.left.right !=  null){
-                                    TreeNode replacement = current;
-                                    replacement = replacement.left.right;
-                                    if(replacement.left == null){
-                                        current.left.data = replacement.data;
-                                        current.left.right = null;
-                                    }
-                                    while (!isEnd){
-                                        if(replacement.left.left == null){ //do not change
-                                            current.left.data = replacement.left.data;
-                                            if(replacement.left.right != null){
-                                                replacement.left = replacement.left.right;
-                                            }
-                                            else{
-                                                replacement.left = null;
-                                            }
-
-                                        }
-                                        replacement = replacement.left;
-                                    }
-                                }
-                                else{
-//                                    System.out.println("one child scenario");
-                                    if(current.left.left!= null){
-                                        current.left = current.left.left;
-                                        count--;
-                                        return;
-                                    }
-                                    else{
-                                        current.left = current.left.right;
-                                        count--;
-                                        return;
-                                    }
-                                }
-                                current.left = null; //Deletion Case 1 - No Children
-                                count--;
-                                return;
-                            }
-                            else{
-                                current = current.left;
-                            }
-                        }
-                    }
-                    if(value > current.data){ //This tells us we gotta go left if true
-//                        System.out.println("I should go left");
-                        if(current.right != null){ //Make sure we can do something on current node's left child (like get its value)
-                            if(current.right.data == value){ //We found the node to delete, hurray
-                                System.out.println("I should begin deletion");
-                                /*
-                                    In this section, we can (eventually) write the logic for all 3 deletion cases
-                                 */
-                                if(current.right.left == null && current.right.right == null){
-//                                    System.out.println("no children scenario");
-                                    current.right = null;
-                                    count--;
-                                    return;
-                                }
-                                if(current.right.left != null && current.right.right !=  null){
-                                    TreeNode replacement = current;
-                                    replacement = replacement.right.right;
-                                    while (!isEnd){
-                                        if(replacement.left.left == null){ //do not change
-                                            current.right = replacement.left;
-                                            replacement.left = null;
-                                        }
-                                        replacement = replacement.left;
-                                    }
-                                }
-                                else{
-//                                    System.out.println("one child scenario");
-                                    if(current.right.left!= null){
-                                        current.right = current.right.left;
-                                        count--;
-                                        return;
-                                    }
-                                    else{
-                                        current.right = current.right.right;
-                                        count--;
-                                        return;
-                                    }
-                                }
-                                current.right = null; //Deletion Case 1 - No Children
-                                count--;
-                                return;
-                            }
-                            else{
-                                current = current.right;
-                            }
-                        }
-                    }
-                    else{ //Root Scenario
-                        if(current.left == null && current.right == null){
-                            System.out.println("no children scenario");
-                            root = null;
-                            count--;
-                            return;
-                        } //yay up to here
-                        if(current.left != null && current.right !=  null){ //Two Children
-                            System.out.println("Two Child");
-                            current = root;
-                            TreeNode replacement = current;
-                            current = current.right;
-                            while(current.left.left != null) {
-                                System.out.println("Begin finding smallest");
-                                current = current.left;
-                            }
-                            replacement = current.left;
-                            root.data = replacement.data;
-                            current.left = replacement.right;
-                            count--;
-                            return;
-
-//
-//
-//                            if(replacement.left == null){
-//                                current.data = replacement.data;
-//                                current.right = current.right.right;
-//                            }
-//                            while (!isEnd){
-//                             //   TreeNode parentOfReplacement = null;
-//                               // if(replacement.left.left==null) {
-//                               //     parentOfReplacement = replacement;
-//                               // }
-//
-//                                if(replacement.left == null){
-//                                    root.data = replacement.data;
-//
-//                                    if(replacement.right != null){ // if it has a child
-//                                        replacement.data = replacement.right.data;
-//                                        replacement.right = replacement.right.right;
-//                                        count--;
-//                                    }
-//                                    else{
-//                                        System.out.println("???");
-//                                      //  parentOfReplacement.left = null;
-//                                    }
-//
-//                                }
-//                                replacement = replacement.left;
-//                            }
-                        }
-                        else{ //One child
-                            if(current.left!= null){
-                                root = current.left;
-                                count--;
-                                return;
-                            }
-                            else{
-                                root = current.right;
-                                count--;
-                                return;
-                            }
-                        }
-                    }
+              else if(getNumOfChildren(current) == 1) { //One Child Case
+                System.out.println("one child");
+                if(current.left == null){
+                    return current.right;
                 }
-            } //end of while loop
-            return;
+                if(current.right == null){
+                    return current.left;
+                }
+            }
+
+              else if(getNumOfChildren(current)==2) { //Two Children Case
+                System.out.println("two children");
+                TreeNode replacement = current.right;
+
+                while(replacement.left != null){
+                    replacement = replacement.left;
+                }
+                current.data = replacement.data;
+                current.right = deleteHelp(current.right,replacement.data);
+//                current.data = replacement.data;
+//                if(current.right != null) {
+//                    current.right = current.right.right;
+//                }
+              }
+            }
+
+            else if(value < current.data ){
+//                current = current.left;
+                TreeNode result = deleteHelp(current.left, value);
+                current.left = result;
+                System.out.println("Setting " +  current.data + "'s left to: " + result);
+            }
+            else{
+//                current = current.right; Not needed
+                current.right = deleteHelp(current.right,value);
+            }
+            //dont forget to count--
+            return current;
+        }
+
+        public int getNumOfChildren(TreeNode node) {
+            int childrenCount = 0;
+            if(node.left != null){
+                childrenCount++;
+            }
+            if(node.right != null) {
+                childrenCount++;
+            }
+            return childrenCount;
         }
 
         /**
